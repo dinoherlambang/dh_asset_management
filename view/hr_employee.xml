@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- action window -->
+        <record id="action_hr_employee" model="ir.actions.act_window">
+            <field name="name">Hr Employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Hr Employee
+                </p><p>
+                Click the Create button to add a new hr_employee record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_hr_employee" name="Hr Employee" parent="dh_assets_management_config_menu" action="action_hr_employee" sequence="70"/>
+    </data>
+</odoo>

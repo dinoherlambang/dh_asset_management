@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <record id="action_report_asset_management_warranty" model="ir.actions.report">
+            <field name="name">Warranty</field>
+            <field name="model">asset_management.warranty</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">dh_assets_management.asset_management_warranty_report</field>
+            <field name="report_file">dh_assets_management.asset_management_warranty_report</field>
+            <field name="print_report_name">object.name</field>
+            <field name="binding_model_id" ref="dh_assets_management.model_asset_management_warranty"/>
+            <field name="binding_type">report</field>
+        </record>
+        <!-- document template -->
+        <template id="dh_assets_management.asset_management_warranty_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Warranty: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Contract Ref</strong>
+                            <p class="m-0" t-field="doc.contract_ref" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Serial Number</strong>
+                            <p class="m-0" t-field="doc.serial_number" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Support Exp Date</strong>
+                            <p class="m-0" t-field="doc.support_exp_date" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Spesification</strong>
+                            <p class="m-0" t-field="doc.spesification" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Note</strong>
+                            <p class="m-0" t-field="doc.note" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Barcode</strong>
+                            <p class="m-0" t-field="doc.barcode" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Qrcode</strong>
+                            <p class="m-0" t-field="doc.qrcode" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Image Small</strong>
+                            <img alt="" class="m-0" style="width:100px" t-attf-src="data:image/*;base64,{{doc.image_small}}" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Suplier</strong>
+                            <p class="m-0" t-field="doc.suplier_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="dh_assets_management.asset_management_warranty_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="dh_assets_management.asset_management_warranty_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form inherited view -->
+        <!-- <record id="view_res_partner_form" model="ir.ui.view">
+            <field name="name">res_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_res_partner" model="ir.actions.act_window">
+            <field name="name">Res Partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Res Partner
+                </p><p>
+                Click the Create button to add a new res_partner record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_res_partner" name="Res Partner" parent="dh_assets_management_config_menu" action="action_res_partner" sequence="80"/>
+    </data>
+</odoo>

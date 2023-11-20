@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- form inherited view -->
+        <!-- <record id="view_asset_location_form" model="ir.ui.view">
+            <field name="name">asset_location_form</field>
+            <field name="model">stock.location</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="undefined"/>
+            <field name="arch" type="xml">
+            </field>
+        </record> -->
+        <!-- action window -->
+        <record id="action_asset_location" model="ir.actions.act_window">
+            <field name="name">Asset Location</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Asset Location
+                </p><p>
+                Click the Create button to add a new asset_location record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_asset_location" name="Asset Location" parent="dh_assets_management_config_menu" action="action_asset_location" sequence="50"/>
+    </data>
+</odoo>

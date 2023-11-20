@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_asset_management_asset_moves_tree" model="ir.ui.view">
+            <field name="name">asset_management_asset_moves_tree</field>
+            <field name="model">asset_management.asset_moves</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Asset Moves">
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="note" />
+                    <field name="photo" />
+                    <field name="assets_list_id" />
+                    <field name="move_from" />
+                    <field name="move_to" />
+                    <field name="responsible_person" />
+                </tree>
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="view_asset_management_asset_moves_pivot" model="ir.ui.view">
+            <field name="name">asset_management_asset_moves_tree</field>
+            <field name="model">asset_management.asset_moves</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="Asset Moves">
+                    <field name="assets_list_id" type="row"/>
+                    <field name="move_from" type="row"/>
+                    <field name="move_to" type="row"/>
+                    <field name="responsible_person" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_asset_management_asset_moves_form" model="ir.ui.view">
+            <field name="name">asset_management_asset_moves_form</field>
+            <field name="model">asset_management.asset_moves</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Asset Moves">
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" states="draft" />
+                        <button string="Mark as Done" type="object" name="action_done" states="open" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="open,done" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Asset Moves Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="note" />
+                                <field name="photo" />
+                            </group>
+                            <group>
+                                <field name="assets_list_id" />
+                                <field name="move_from" />
+                                <field name="move_to" />
+                                <field name="responsible_person" />
+                            </group>
+                        </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+            <!-- search -->
+            <record id="view_asset_management_asset_moves_search" model="ir.ui.view">
+                <field name="name">asset_management_asset_moves</field>
+                <field name="model">asset_management.asset_moves</field>
+                <field name="arch" type="xml">
+                    <search string="Asset Moves">
+
+                        <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                        <filter string="State" name="filter_by_state" domain="[('state','=','')]" />
+                        <filter string="Note" name="filter_by_note" domain="[('note','=','')]" />
+                        <filter string="Photo" name="filter_by_photo" domain="[('photo','=','')]" />
+                        <field name="name" select="True"/>
+                        <field name="state" select="True"/>
+                        <field name="note" select="True"/>
+                        <field name="photo" select="True"/>
+                        <field name="assets_list_id" select="True"/>
+                        <field name="move_from" select="True"/>
+                        <field name="move_to" select="True"/>
+                        <field name="responsible_person" select="True"/>
+                        <group string="Group By..">
+                            <filter string="Assets List" domain="[]" name="group_by_assets_list_id" context="{'group_by':'assets_list_id'}"/>
+                            <filter string="Move From" domain="[]" name="group_by_move_from" context="{'group_by':'move_from'}"/>
+                            <filter string="Move To" domain="[]" name="group_by_move_to" context="{'group_by':'move_to'}"/>
+                            <filter string="Responsible Person" domain="[]" name="group_by_responsible_person" context="{'group_by':'responsible_person'}"/>
+                        </group>
+                    </search>
+                </field>
+            </record>
+            <!-- kanban , to show image, please add image_small in the model -->
+            <record id="view_asset_management_asset_moves_kanban" model="ir.ui.view" >
+                <field name="name">asset_management_asset_moves</field>
+                <field name="model">asset_management.asset_moves</field>
+                <field name="arch" type="xml">
+                    <kanban version="7.0">
+                        <field name="id" />
+                        <field name="name" />
+                        <field name="state" />
+                        <field name="note" />
+                        <field name="photo" />
+                        <field name="assets_list_id" />
+                        <field name="move_from" />
+                        <field name="move_to" />
+                        <field name="responsible_person" />
+                        <templates>
+                            <t t-name="kanban-box">
+                                <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                    <div class="oe_kanban_details">
+                                        <h4>
+                                            <a type="open"><field name="name"/></a>
+                                        </h4>
+                                        <ul>
+
+                                            <li>
+                                                <span class="text-muted">Assets List</span> <field name="assets_list_id"></field>
+                                            </li>
+
+
+                                            <li>
+                                                <span class="text-muted">Move From</span> <field name="move_from"></field>
+                                            </li>
+
+
+                                            <li>
+                                                <span class="text-muted">Move To</span> <field name="move_to"></field>
+                                            </li>
+
+
+                                            <li>
+                                                <span class="text-muted">Responsible Person</span> <field name="responsible_person"></field>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </t>
+                        </templates>
+                    </kanban>
+                </field>
+            </record>
+            <!-- calendar if a date field exists -->
+            <!-- graph -->
+            <record id="view_asset_management_asset_moves_graph" model="ir.ui.view">
+                <field name="name">asset_management_asset_moves</field>
+                <field name="model">asset_management.asset_moves</field>
+                <field name="arch" type="xml">
+                    <graph string="Asset Moves" type="bar">
+                        <field name="assets_list_id"/>
+                    </graph>
+                </field>
+            </record>
+            <!-- action window -->
+            <record id="action_asset_moves" model="ir.actions.act_window">
+                <field name="name">Asset Moves</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">asset_management.asset_moves</field>
+                <field name="view_mode">tree,form,kanban,pivot,graph</field>
+                <field name="help" type="html">
+                    <p class="oe_view_nocontent_create">
+                    Click to add a new Asset Moves
+                    </p><p>
+                    Click the Create button to add a new asset_moves record.
+                    </p>
+                </field>
+            </record>
+
+            <menuitem id="menu_asset_moves" name="Asset Moves" parent="dh_assets_management_sub_menu" action="action_asset_moves" sequence="40"/>
+        </data>
+    </odoo>

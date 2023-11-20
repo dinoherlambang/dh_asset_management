@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="dh_assets_management_top_menu" name="Assets Management" sequence="20" web_icon="dh_assets_management,static/description/icon.png" />
+		<menuitem id="dh_assets_management_sub_menu" name="Operations" sequence="40" parent="dh_assets_management_top_menu" />
+		<menuitem id="dh_assets_management_config_menu" name="Configurations" sequence="50" parent="dh_assets_management_top_menu" />
+	</data>
+</odoo>

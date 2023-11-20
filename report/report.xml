@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_asset_moves_list"
+        string="Asset Moves Report"
+        model="dh_assets_management.asset_moves"
+        report_type="qweb-pdf"
+        name="dh_assets_management.report_asset_moves"
+        file="dh_assets_management.report_asset_moves"/>
+
+</odoo>

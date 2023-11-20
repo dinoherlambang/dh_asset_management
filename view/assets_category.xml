@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- action window -->
+        <record id="action_assets_category" model="ir.actions.act_window">
+            <field name="name">Assets Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Assets Category
+                </p><p>
+                Click the Create button to add a new assets_category record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_assets_category" name="Assets Category" parent="dh_assets_management_config_menu" action="action_assets_category" sequence="30"/>
+    </data>
+</odoo>
